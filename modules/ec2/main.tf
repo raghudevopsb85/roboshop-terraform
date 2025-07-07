@@ -16,6 +16,7 @@ resource "aws_route53_record" "record" {
 }
 
 resource "null_resource" "ansible" {
+  depends_on = [aws_route53_record.record]
   provisioner "local-exec" {
     command = <<ANSIBLE
 cd /home/ec2-user/roboshop-ansible
