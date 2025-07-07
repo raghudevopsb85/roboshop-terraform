@@ -5,13 +5,6 @@ resource "aws_instance" "instance" {
   tags = {
     Name = "${var.name}-${var.env}"
   }
-
-  provisioner "local-exec" {
-    command = <<ANSIBLE
-cd /home/ec2-user/roboshop-ansible
-make role_name=${var.name}
-ANSIBLE
-  }
 }
 
 resource "aws_route53_record" "record" {
@@ -22,3 +15,11 @@ resource "aws_route53_record" "record" {
   records = [aws_instance.instance.private_ip]
 }
 
+resource "null_resource" "ansible" {
+  provisioner "local-exec" {
+    command = <<ANSIBLE
+cd /home/ec2-user/roboshop-ansible
+make role_name=${var.name}
+ANSIBLE
+  }
+}
