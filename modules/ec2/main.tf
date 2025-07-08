@@ -17,6 +17,7 @@ resource "aws_route53_record" "record" {
 }
 
 resource "aws_route53_record" "public" {
+  count   = var.env == null ? 1 : 0
   zone_id = var.zone_id
   name    = local.dnsNamePublic
   type    = "A"
