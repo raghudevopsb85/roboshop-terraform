@@ -32,6 +32,6 @@ instances = {
 }
 
 env       = "dev"
-ami       = "ami-09c813fb71547fc4f"
+ami       = "ami-0d4983d93b76c67c3"
 zone_id   = "Z09055292Q5WKIF45FE2E"
 zone_name = "rdevopsb85.online"
