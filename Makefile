@@ -34,5 +34,5 @@ prod-destroy: prod-init ## Prod Destroy
 tools-infra: ## Tools Infra
 	git pull
 	rm -f .terraform/terraform.tfstate
-	cd tools ; terraform init ; terraform apply -auto-approve
+	cd tools ; terraform init ; terraform apply -auto-approve -var token=$(token)
 
