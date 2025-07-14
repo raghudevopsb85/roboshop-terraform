@@ -4,34 +4,34 @@ help: ## Show this help message
 	@echo "Available targets:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-dev-init:
+dev-init: ## Dev Destroy
 	git pull
 	rm -f .terraform/terraform.tfstate
 	terraform init -backend-config=./environments/dev/state.tfvars
 
-dev-plan:
+dev-plan: ## Dev Destroy
 	terraform plan -var-file=./environments/dev/main.tfvars
 
-dev-apply: dev-init
+dev-apply: dev-init ## Dev Destroy
 	terraform apply -var-file=./environments/dev/main.tfvars -auto-approve -var token=$(token)
 
-dev-destroy: dev-init
+dev-destroy: dev-init ## Dev Destroy
 	terraform destroy -var-file=./environments/dev/main.tfvars -auto-approve  -var token=$(token)
 
-prod-init:
+prod-init: ## Prod Init
 	rm -f .terraform/terraform.tfstate
 	terraform init -backend-config=./environments/prod/state.tfvars
 
-prod-plan:
+prod-plan: ## Prod Plan
 	terraform plan -var-file=./environments/prod/main.tfvars
 
-prod-apply: prod-init
+prod-apply: prod-init ## Prod Apply
 	terraform apply -var-file=./environments/prod/main.tfvars -auto-approve  -var token=$(token)
 
-prod-destroy: prod-init
+prod-destroy: prod-init ## Prod Destroy
 	terraform destroy -var-file=./environments/prod/main.tfvars -auto-approve  -var token=$(token)
 
-tools-infra:
+tools-infra: ## Tools Infra
 	git pull
 	rm -f .terraform/terraform.tfstate
 	cd tools ; terraform init ; terraform apply -auto-approve
