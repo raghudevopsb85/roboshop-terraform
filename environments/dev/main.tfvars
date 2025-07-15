@@ -1,7 +1,7 @@
 instances = {
-  frontend = {
-    instance_type = "t3.small"
-  }
+#   frontend = {
+#     instance_type = "t3.small"
+#   }
   mysql = {
     instance_type = "t3.small"
   }
