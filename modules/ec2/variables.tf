@@ -6,5 +6,7 @@ variable "env" {
 }
 variable "zone_id" {}
 variable "token" {}
-
+variable "disk_size" {
+  default = 20
+}
 
