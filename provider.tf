@@ -4,9 +4,9 @@ provider "aws" {
 terraform {
   backend "s3" {}
 }
-
-provider "vault" {
-  address = "http://vault-internal.rdevopsb85.online:8200"
-  token   = var.token
-}
-
+#
+# provider "vault" {
+#   address = "http://vault-internal.rdevopsb85.online:8200"
+#   token   = var.token
+# }
+#
