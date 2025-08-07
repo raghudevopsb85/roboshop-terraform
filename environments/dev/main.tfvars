@@ -68,5 +68,14 @@ zone_id   = "Z09055292Q5WKIF45FE2E"
 zone_name = "rdevopsb85.online"
 
 eks = {
-
+  main = {
+    eks_version = 1.33
+    subnet_ids  = ["subnet-05f2d527e96f275c9", "subnet-0506db159acceacf5"]
+    node_groups = {
+      one = {
+        min_nodes = 1
+        max_nodes = 10
+      }
+    }
+  }
 }
