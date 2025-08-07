@@ -1,5 +1,5 @@
 module "ec2" {
-  for_each      = var.instances
+  for_each      = var.databases
   source        = "./modules/ec2"
   ami           = var.ami
   env           = var.env
