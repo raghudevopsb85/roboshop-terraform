@@ -7,4 +7,5 @@ module "tools" {
   zone_id       = var.zone_id
   token         = var.token
   is_tool       = true
+  iam_policy    = each.value["iam_policy"]
 }
