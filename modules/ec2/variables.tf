@@ -10,3 +10,7 @@ variable "disk_size" {
   default = 20
 }
 
+variable "is_tool" {
+  default = false
+}
+

@@ -1,5 +1,5 @@
 resource "aws_iam_role" "main" {
-  name = "${var.name}-${var.env}-ec2-role"
+  name = var.is_tool ? "${var.name}-ec2-role" : "${var.name}-${var.env}-ec2-role"
 
   assume_role_policy = jsonencode({
     "Version": "2012-10-17",
