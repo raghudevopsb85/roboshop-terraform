@@ -10,13 +10,13 @@ module "ec2" {
   token         = var.token
 }
 
-
-module "eks" {
-  for_each    = var.eks
-  source      = "./modules/eks"
-  env         = var.env
-  eks_version = each.value["eks_version"]
-  subnet_ids  = each.value["subnet_ids"]
-  node_groups = each.value["node_groups"]
-}
-
+#
+# module "eks" {
+#   for_each    = var.eks
+#   source      = "./modules/eks"
+#   env         = var.env
+#   eks_version = each.value["eks_version"]
+#   subnet_ids  = each.value["subnet_ids"]
+#   node_groups = each.value["node_groups"]
+# }
+#
