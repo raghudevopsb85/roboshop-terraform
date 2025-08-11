@@ -6,4 +6,5 @@ module "tools" {
   name          = each.key
   zone_id       = var.zone_id
   token         = var.token
+  is_tool       = true
 }
