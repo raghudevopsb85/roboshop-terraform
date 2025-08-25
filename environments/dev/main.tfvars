@@ -83,6 +83,11 @@ eks = {
         access_scope  = "cluster"
         policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
       }
+      github-runner = {
+        principal_arn = "arn:aws:iam::739561048503:role/github-runner-ec2-role"
+        access_scope  = "cluster"
+        policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+      }
     }
   }
 }
