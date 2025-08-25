@@ -81,12 +81,12 @@ eks = {
       workstation = {
         principal_arn = "arn:aws:iam::739561048503:role/workstation-role"
         access_scope  = "cluster"
-        policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+        policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
       }
       github-runner = {
         principal_arn = "arn:aws:iam::739561048503:role/github-runner-ec2-role"
         access_scope  = "cluster"
-        policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
+        policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
       }
     }
   }
