@@ -10,3 +10,8 @@ provider "vault" {
   token   = var.token
 }
 
+provider "helm" {
+  kubernetes = {
+    config_path = "~/.kube/config"
+  }
+}
