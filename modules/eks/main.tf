@@ -39,3 +39,12 @@ resource "aws_eks_addon" "main" {
   })
 }
 
+
+resource "aws_eks_access_entry" "access" {
+  for_each          = var.access
+  cluster_name      = aws_eks_cluster.main.name
+  principal_arn     = each.value["principal_arn"]
+  kubernetes_groups = try(each.value["kubernetes_groups"], [])
+  type              = "STANDARD"
+}
+

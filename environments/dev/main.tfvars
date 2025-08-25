@@ -77,5 +77,10 @@ eks = {
         max_nodes = 10
       }
     }
+    access = {
+      workstation = {
+        principal_arn = "arn:aws:iam::739561048503:role/workstation-role"
+      }
+    }
   }
 }
