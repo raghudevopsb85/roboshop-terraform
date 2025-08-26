@@ -19,3 +19,13 @@ resource "helm_release" "nginx_ingress" {
 
 }
 
+resource "helm_release" "external-dns" {
+  depends_on       = [null_resource.kubeconfig]
+  name             = "external-dns"
+  repository       = "https://kubernetes-sigs.github.io/external-dns"
+  chart            = "external-dns"
+  namespace        = "tools"
+  create_namespace = true
+}
+
+
