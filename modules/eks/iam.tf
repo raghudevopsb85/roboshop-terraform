@@ -79,7 +79,8 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
 ## External DNS
 
 resource "aws_iam_role" "external-dns" {
-  name = "${var.env}-cluster-role"
+  name = "${var.env}-pod-external-dns-role"
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
