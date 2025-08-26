@@ -98,6 +98,11 @@ eks = {
           }
         }
       }
+
+      eks-pod-identity-agent= {
+        config = {}
+      }
+
     }
   }
 }
