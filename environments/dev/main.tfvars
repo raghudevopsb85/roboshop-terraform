@@ -90,13 +90,14 @@ eks = {
       }
     }
     addons = {
-      name = "vpc-cni"
-      config = jsonencode({
-        "enableNetworkPolicy" : "true",
-        "nodeAgent" : {
-          "enablePolicyEventLogs" : "true"
-        }
-      })
+      vpc-cni = {
+        config = jsonencode({
+          "enableNetworkPolicy" : "true",
+          "nodeAgent" : {
+            "enablePolicyEventLogs" : "true"
+          }
+        })
+      }
     }
   }
 }
