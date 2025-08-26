@@ -29,14 +29,10 @@ resource "aws_eks_node_group" "main" {
 }
 
 resource "aws_eks_addon" "main" {
-  cluster_name = aws_eks_cluster.main.name
-  addon_name   = "vpc-cni"
-  configuration_values = jsonencode({
-    "enableNetworkPolicy" : "true",
-    "nodeAgent" : {
-      "enablePolicyEventLogs" : "true"
-    }
-  })
+  for_each             = var.addons
+  cluster_name         = aws_eks_cluster.main.name
+  addon_name           = each.key
+  configuration_values = each.value["config"]
 }
 
 

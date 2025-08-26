@@ -19,6 +19,7 @@ module "eks" {
   subnet_ids  = each.value["subnet_ids"]
   node_groups = each.value["node_groups"]
   access      = each.value["access"]
+  addons      = each.value["addons"]
 }
 
 

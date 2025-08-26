@@ -89,5 +89,14 @@ eks = {
         policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
       }
     }
+    addons = {
+      name = "vpc-cni"
+      config = jsonencode({
+        "enableNetworkPolicy" : "true",
+        "nodeAgent" : {
+          "enablePolicyEventLogs" : "true"
+        }
+      })
+    }
   }
 }
