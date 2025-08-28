@@ -41,12 +41,10 @@ resource "helm_release" "argocd" {
   create_namespace = true
   values           = [file("${path.module}/helm-values/argo.yml")]
 
-  set = [
-    {
+  set {
       name  = "global.domain"
       value = "argocd-${var.env}.rdevopsb85.online"
     }
-  ]
 
 }
 
