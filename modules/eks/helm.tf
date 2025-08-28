@@ -39,6 +39,14 @@ resource "helm_release" "argocd" {
   chart            = "argo-cd"
   namespace        = "tools"
   create_namespace = true
+
+  set = [
+    {
+      name  = "global.domain"
+      value = "argocd-${var.env}.rdevopsb85.online"
+    }
+  ]
+
 }
 
 
