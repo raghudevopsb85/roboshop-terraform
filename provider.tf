@@ -3,6 +3,12 @@ provider "aws" {
 }
 terraform {
   backend "s3" {}
+  required_providers {
+    helm = {
+      source  = "hashicorp/helm"
+      version = "= 2.17.0"
+    }
+  }
 }
 
 provider "vault" {
