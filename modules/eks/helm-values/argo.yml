@@ -3,3 +3,6 @@ server:
     enabled: true
     ingressClassName: nginx
 
+configs:
+  params:
+    server.insecure: true
