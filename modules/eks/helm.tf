@@ -57,5 +57,24 @@ resource "helm_release" "external-secrets" {
   create_namespace = true
 }
 
+resource "null_resource" "external-secret-store" {
+
+  depends_on = [helm_release.external-secrets]
+
+  provisioner "local-exec" {
+    command = <<EOF
+kubectl apply -f - <<EOK
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-token
+  namespace: tools
+data:
+  token: ${base64encode(var.vault_token)}
+EOK
+EOF
+  }
+
+}
 
 

@@ -4,4 +4,7 @@ variable "subnet_ids" {}
 variable "node_groups" {}
 variable "access" {}
 variable "addons" {}
+variable "vault_token" {}
+
+
 
