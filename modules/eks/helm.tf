@@ -87,6 +87,7 @@ spec:
         tokenSecretRef:
           name: "vault-token"
           key: "token"
+          namespace: tools
 EOK
 EOF
   }
