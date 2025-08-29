@@ -71,6 +71,22 @@ metadata:
   namespace: tools
 data:
   token: ${base64encode(var.vault_token)}
+---
+apiVersion: external-secrets.io/v1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+  namespace: tools
+spec:
+  provider:
+    vault:
+      server: "http://vault-internal.rdevopsb85.online:8200"
+      path: "roboshop-${var.env}"
+      version: "v2"
+      auth:
+        tokenSecretRef:
+          name: "vault-token"
+          key: "token"
 EOK
 EOF
   }
