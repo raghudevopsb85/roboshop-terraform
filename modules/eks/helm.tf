@@ -107,7 +107,7 @@ resource "helm_release" "prometheus" {
 
   set {
     name  = "prometheus.ingress.hosts"
-    value = "[prometheus-${var.env}.rdevopsb85.online]"
+    value = ["prometheus-${var.env}.rdevopsb85.online"]
   }
 
 }
