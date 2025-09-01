@@ -103,6 +103,14 @@ resource "helm_release" "prometheus" {
   chart            = "kube-prometheus-stack"
   namespace        = "tools"
   create_namespace = true
+  values           = [file("${path.module}/helm-values/kube-stack.yml")]
+
+  set {
+    name  = "prometheus.ingress.hosts"
+    value = "[prometheus-${var.env}.rdevopsb85.online]"
+  }
+
 }
+
 
 
