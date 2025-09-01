@@ -105,7 +105,7 @@ resource "helm_release" "prometheus" {
   create_namespace = true
   values           = [file("${path.module}/helm-values/kube-stack.yml")]
 
-  set {
+  set_list {
     name  = "prometheus.ingress.hosts"
     value = ["prometheus-${var.env}.rdevopsb85.online"]
   }
