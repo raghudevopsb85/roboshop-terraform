@@ -68,7 +68,7 @@ metadata:
   name: vault-token
   namespace: tools
 data:
-  token: ${base64encode(var.vault_token)}
+  token: ${base64encode(var.token)}
 ---
 apiVersion: external-secrets.io/v1
 kind: ClusterSecretStore
