@@ -3,3 +3,17 @@ prometheus:
     enabled: true
     ingressClassName: "nginx"
 
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: ec2-nodes
+        ec2_sd_configs:
+          - region: us-east-1
+            filters:
+              - "tag:monitor=true"
+        relabel_configs:
+          - source_labels: [__meta_ec2_instance_id]
+            target_label: instance_id
+          - source_labels: [__meta_ec2_instance_type]
+            target_label: instance_type
+          - source_labels: [__meta_ec2_tag_Name]
+            target_label: ec2_name
