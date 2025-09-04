@@ -65,7 +65,7 @@ resource "aws_iam_role" "prometheus-server" {
   })
 
   inline_policy {
-    name = "external-dns"
+    name = "prometheus-server"
 
     policy = jsonencode({
       Version = "2012-10-17"
@@ -88,7 +88,7 @@ resource "aws_eks_pod_identity_association" "prometheus-server" {
   cluster_name    = var.env
   namespace       = "tools"
   service_account = "kube-prometheus-stack-prometheus"
-  role_arn        = aws_iam_role.external-dns.arn
+  role_arn        = aws_iam_role.prometheus-server.arn
 }
 
 
