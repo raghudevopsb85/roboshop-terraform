@@ -8,6 +8,7 @@ prometheus:
       - job_name: ec2-nodes
         ec2_sd_configs:
           - region: us-east-1
+            port: 9100
             filters:
               - name: "tag:monitor"
                 values: ["true", "yes"]
