@@ -35,6 +35,10 @@ resource "null_resource" "ansible" {
 
   count = var.env == null ? 0 : 1
 
+  triggers = {
+    instance_id = aws_instance.instance.id
+  }
+
   depends_on = [aws_route53_record.record]
   provisioner "remote-exec" {
     connection {
