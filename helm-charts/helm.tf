@@ -110,5 +110,22 @@ resource "helm_release" "prometheus" {
 
 }
 
+# Cluster Autoscaler
+resource "helm_release" "cluster-autoscaler" {
+  depends_on       = [null_resource.kubeconfig]
+  name             = "autoscaler"
+  repository       = "https://kubernetes.github.io/autoscaler"
+  chart            = "autoscaler"
+  namespace        = "tools"
+  create_namespace = true
+  values           = [file("${path.module}/helm-values/kube-stack.yml")]
+
+  set {
+    name  = "autoDiscovery.clusterName"
+    value = var.env
+  }
+
+}
+
 
 
