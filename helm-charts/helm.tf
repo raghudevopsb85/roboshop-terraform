@@ -125,6 +125,11 @@ resource "helm_release" "cluster-autoscaler" {
     value = var.env
   }
 
+  set {
+    name  = "awsRegion"
+    value = "us-east-1"
+  }
+
 }
 
 
