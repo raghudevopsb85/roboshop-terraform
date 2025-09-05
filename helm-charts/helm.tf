@@ -113,9 +113,9 @@ resource "helm_release" "prometheus" {
 # Cluster Autoscaler
 resource "helm_release" "cluster-autoscaler" {
   depends_on       = [null_resource.kubeconfig]
-  name             = "autoscaler"
+  name             = "cluster-autoscaler"
   repository       = "https://kubernetes.github.io"
-  chart            = "autoscaler"
+  chart            = "cluster-autoscaler"
   namespace        = "tools"
   create_namespace = true
   values           = [file("${path.module}/helm-values/kube-stack.yml")]
