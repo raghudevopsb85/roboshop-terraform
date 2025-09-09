@@ -25,4 +25,7 @@ variable "spot" {
 variable "monitor" {
   default = false
 }
+variable "spot_max_price" {
+  default = 0
+}
 

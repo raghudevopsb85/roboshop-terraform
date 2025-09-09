@@ -28,6 +28,9 @@ resource "aws_instance" "spot_instance" {
 
   instance_market_options {
     market_type = "spot"
+    spot_options {
+      max_price = var.spot_max_price
+    }
   }
 
   tags = {
