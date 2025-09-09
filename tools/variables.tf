@@ -19,7 +19,7 @@ variable "tools" {
     elk = {
       instance_type = "m8i.xlarge"
       spot          = true
-      spot_max_price = 0.0400
+      spot_max_price = 0.0930
       subnet = "subnet-0506db159acceacf5"
     }
   }
