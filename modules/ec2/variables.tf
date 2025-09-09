@@ -22,4 +22,7 @@ variable "spot" {
   default = false
 }
 
+variable "monitor" {
+  default = false
+}
 

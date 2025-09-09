@@ -11,7 +11,7 @@ resource "aws_instance" "instance" {
 
   tags = {
     Name = local.tagName
-    monitor = "true"
+    monitor = var.monitor
   }
 }
 
@@ -32,7 +32,6 @@ resource "aws_instance" "spot_instance" {
 
   tags = {
     Name = local.tagName
-    monitor = "true"
   }
 }
 
