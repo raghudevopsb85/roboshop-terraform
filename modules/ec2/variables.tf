@@ -18,3 +18,8 @@ variable "iam_policy" {
   default = []
 }
 
+variable "spot" {
+  default = false
+}
+
+

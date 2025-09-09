@@ -1,4 +1,5 @@
 resource "aws_instance" "instance" {
+  count                  = var.spot ? 0 : 1
   ami                    = var.ami
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
@@ -14,12 +15,33 @@ resource "aws_instance" "instance" {
   }
 }
 
+resource "aws_instance" "spot_instance" {
+  count                  = var.spot ? 1 : 0
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
+  iam_instance_profile   = aws_iam_instance_profile.main.name
+
+  root_block_device {
+    volume_size = var.disk_size
+  }
+
+  instance_market_options {
+    market_type = "spot"
+  }
+
+  tags = {
+    Name = local.tagName
+    monitor = "true"
+  }
+}
+
 resource "aws_route53_record" "record" {
   zone_id = var.zone_id
   name    = local.dnsName
   type    = "A"
   ttl     = 30
-  records = [aws_instance.instance.private_ip]
+  records = var.spot ? [aws_instance.spot_instance.private_ip] : [aws_instance.instance.private_ip]
 }
 
 resource "aws_route53_record" "public" {
@@ -28,7 +50,7 @@ resource "aws_route53_record" "public" {
   name    = local.dnsNamePublic
   type    = "A"
   ttl     = 30
-  records = [aws_instance.instance.public_ip]
+  records = var.spot ? [aws_instance.spot_instance.public_ip] : [aws_instance.instance.public_ip]
 }
 
 resource "null_resource" "ansible" {
@@ -36,7 +58,7 @@ resource "null_resource" "ansible" {
   count = var.env == null ? 0 : 1
 
   triggers = {
-    instance_id = aws_instance.instance.id
+    instance_id = var.spot ? aws_instance.spot_instance.id : aws_instance.instance.id
   }
 
   depends_on = [aws_route53_record.record]
@@ -45,7 +67,7 @@ resource "null_resource" "ansible" {
       type     = "ssh"
       user     = data.vault_generic_secret.ssh-creds.data["username"]
       password = data.vault_generic_secret.ssh-creds.data["password"]
-      host     = aws_instance.instance.private_ip
+      host     = var.spot ? aws_instance.spot_instance.private_ip : aws_instance.instance.private_ip
     }
 
     inline = [
