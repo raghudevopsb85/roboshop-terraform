@@ -12,6 +12,7 @@ module "tools" {
   spot          = try(each.value["spot"], false)
   monitor       = try(each.value["monitor"], false)
   spot_max_price = try(each.value["spot_max_price"], 0)
+  subnet        = try(each.value["subnet"], null)
 }
 
 resource "aws_ecr_repository" "main" {
