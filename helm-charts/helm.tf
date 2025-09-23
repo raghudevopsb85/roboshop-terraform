@@ -117,6 +117,11 @@ resource "helm_release" "prometheus" {
     value = ["prometheus-${var.env}.rdevopsb85.online"]
   }
 
+  set_list {
+    name  = "alertmanager.ingress.hosts"
+    value = ["alertmanager-${var.env}.rdevopsb85.online"]
+  }
+
 }
 
 # Cluster Autoscaler

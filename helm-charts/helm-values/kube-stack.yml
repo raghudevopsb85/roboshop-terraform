@@ -27,7 +27,12 @@ prometheus:
 
 
 alertmanager:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
   config:
+    global:
+      resolve_timeout: 1m
     inhibit_rules:
       - source_matchers:
           - 'severity = critical'
