@@ -71,7 +71,7 @@ resource "aws_iam_role" "prometheus-server" {
       Version = "2012-10-17"
       Statement = [
         {
-          Action   = [
+          Action = [
             "ec2:DescribeInstances",
             "ec2:DescribeInstanceStatus"
           ]
@@ -120,7 +120,7 @@ resource "aws_iam_role" "cluster-autoscaler" {
       Version = "2012-10-17"
       Statement = [
         {
-          Action   = [
+          Action = [
             "autoscaling:DescribeAutoScalingGroups",
             "autoscaling:DescribeAutoScalingInstances",
             "autoscaling:DescribeLaunchConfigurations",

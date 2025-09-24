@@ -73,17 +73,17 @@ eks = {
     subnet_ids  = ["subnet-05f2d527e96f275c9", "subnet-0506db159acceacf5"]
     node_groups = {
       spot1 = {
-        min_nodes       = 1
-        max_nodes       = 10
-        instance_types  = ["t3.xlarge"]
-        capacity_type   = "SPOT"
+        min_nodes      = 1
+        max_nodes      = 10
+        instance_types = ["t3.xlarge"]
+        capacity_type  = "SPOT"
       }
-#       one = {
-#         min_nodes       = 2
-#         max_nodes       = 10
-#         instance_types  = ["t3.medium"]
-#         capacity_type   = "ON_DEMAND"
-#       }
+      #       one = {
+      #         min_nodes       = 2
+      #         max_nodes       = 10
+      #         instance_types  = ["t3.medium"]
+      #         capacity_type   = "ON_DEMAND"
+      #       }
     }
     access = {
       workstation = {
@@ -107,7 +107,7 @@ eks = {
         }
       }
 
-      eks-pod-identity-agent= {
+      eks-pod-identity-agent = {
         config = {}
       }
 
@@ -121,11 +121,11 @@ vpc = {
     vpc_cidr_block = "10.10.0.0/16"
     subnets = {
       az1 = {
-        cidr_block = "10.10.0.0/17"
+        cidr_block        = "10.10.0.0/17"
         availability_zone = "us-east-1a"
       }
       az2 = {
-        cidr_block = "10.10.128.0/17"
+        cidr_block        = "10.10.128.0/17"
         availability_zone = "us-east-1b"
       }
     }

@@ -1,9 +1,9 @@
 module "vpc" {
   source = "./modules/vpc"
 
-  for_each = var.vpc
-  env      = var.env
-  subnets  = each.value["subnets"]
+  for_each       = var.vpc
+  env            = var.env
+  subnets        = each.value["subnets"]
   vpc_cidr_block = each.value["vpc_cidr_block"]
 }
 

@@ -43,9 +43,9 @@ resource "helm_release" "argocd" {
   values           = [file("${path.module}/helm-values/argo.yml")]
 
   set {
-      name  = "global.domain"
-      value = "argocd-${var.env}.rdevopsb85.online"
-    }
+    name  = "global.domain"
+    value = "argocd-${var.env}.rdevopsb85.online"
+  }
 
 }
 
@@ -105,7 +105,7 @@ resource "helm_release" "prometheus" {
   namespace        = "tools"
   create_namespace = true
   #values           = [file("${path.module}/helm-values/kube-stack.yml")]
-  values           = [
+  values = [
     templatefile("${path.module}/helm-values/kube-stack.yml", {
       smtp_user = data.vault_generic_secret.ses.data["smtp_user"]
       smtp_pass = data.vault_generic_secret.ses.data["smtp_pass"]
