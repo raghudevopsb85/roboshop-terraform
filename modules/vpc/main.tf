@@ -18,12 +18,27 @@ resource "aws_subnet" "main" {
 }
 
 resource "aws_vpc_peering_connection" "main" {
-  for_each      = var.vpc_peers
-  peer_vpc_id   = aws_vpc.main.id
-  vpc_id        = each.value["vpc_id"]
-  auto_accept   = true
+  for_each    = var.vpc_peers
+  peer_vpc_id = aws_vpc.main.id
+  vpc_id      = each.value["vpc_id"]
+  auto_accept = true
   tags = {
     Name = "${var.env}-to-${each.key}"
   }
+}
+
+
+resource "aws_route" "main-to-other" {
+  for_each                  = var.vpc_peers
+  route_table_id            = aws_vpc.main.default_route_table_id
+  destination_cidr_block    = each.value["vpc_cidr"]
+  vpc_peering_connection_id = aws_vpc_peering_connection.main[each.key].id
+}
+
+resource "aws_route" "other-to-main" {
+  for_each                  = var.vpc_peers
+  route_table_id            = each.value["route_table"]
+  destination_cidr_block    = var.vpc_cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.main[each.key].id
 }
 
