@@ -17,3 +17,10 @@ resource "aws_subnet" "main" {
   }
 }
 
+resource "aws_vpc_peering_connection" "main" {
+  for_each      = var.vpc_peers
+  peer_vpc_id   = aws_vpc.main.id
+  vpc_id        = each.value["vpc_id"]
+  auto_accept   = true
+}
+
