@@ -22,5 +22,8 @@ resource "aws_vpc_peering_connection" "main" {
   peer_vpc_id   = aws_vpc.main.id
   vpc_id        = each.value["vpc_id"]
   auto_accept   = true
+  tags = {
+    Name = "${var.env}-to-${each.value}"
+  }
 }
 
