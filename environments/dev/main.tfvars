@@ -134,7 +134,8 @@ vpc = {
       }
     }
     vpc_peers = {
-      default = {
+      "vpc-06ac3dd6a7a23a33a" = {
+        name        = "default"
         vpc_id      = "vpc-06ac3dd6a7a23a33a"
         vpc_cidr    = "172.31.0.0/16"
         route_table = "rtb-00e8a453486ad1e90"

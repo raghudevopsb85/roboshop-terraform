@@ -54,7 +54,7 @@ resource "aws_route" "other-to-main" {
 # resource "aws_route" "subnets-to-other" {
 #   for_each                  = local.route_peering_combination
 #   route_table_id            = each.value["route_table_id"]
-#   destination_cidr_block    = var.vpc_cidr_block
+#   destination_cidr_block    = each.value["vpc_id"]
 #   vpc_peering_connection_id = each.value["peering_id"]
 # }
 

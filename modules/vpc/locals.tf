@@ -5,7 +5,7 @@ locals {
         for peer_key, peer_val in aws_vpc_peering_connection.main : {
           key = "${subnet_key}-${peer_key}"
           value = {
-            subnet_id = subnet_val.id
+            subnet_id  = subnet_val.id
             peering_id = peer_val.id
           }
         }
@@ -21,7 +21,8 @@ locals {
           key = "${route_key}-${peer_key}"
           value = {
             route_table_id = route_val.id
-            peering_id = peer_val.id
+            peering_id     = peer_val.id
+            vpc_id         = peer_val.vpc_id
           }
         }
       ]
