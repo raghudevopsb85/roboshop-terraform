@@ -38,6 +38,3 @@ locals {
 
 }
 
-output "ngw" {
-  value = local.ngw_subnets
-}

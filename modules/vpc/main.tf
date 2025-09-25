@@ -85,4 +85,10 @@ resource "aws_route" "gateway" {
   gateway_id                = aws_internet_gateway.igw.id
 }
 
+resource "aws_route" "ngw-to-subnets" {
+  for_each                  = local.ngw_subnets
+  route_table_id            = lookup(lookup(aws_route_table.main, each.key, null), "id", null)
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id            = aws_nat_gateway.ngw.id
+}
 
