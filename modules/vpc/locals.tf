@@ -35,3 +35,6 @@ output "route_peering_combination" {
   value = local.route_peering_combination
 }
 
+output "peering" {
+  value = aws_vpc_peering_connection.main
+}
