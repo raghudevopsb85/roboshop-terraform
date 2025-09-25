@@ -50,6 +50,13 @@ resource "aws_route" "other-to-main" {
   vpc_peering_connection_id = aws_vpc_peering_connection.main[each.key].id
 }
 
+resource "aws_route" "subnets-to-other" {
+  for_each                  = local.route_peering_combination
+  route_table_id            = each.value["route_table_id"]
+  destination_cidr_block    = var.vpc_cidr_block
+  vpc_peering_connection_id = each.value["peering_id"]
+}
+
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 

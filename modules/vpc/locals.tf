@@ -5,17 +5,33 @@ locals {
         for peer_key, peer_val in aws_vpc_peering_connection.main : {
           key = "${subnet_key}-${peer_key}"
           value = {
-            az = subnet_val.id
-            id = peer_val.id
+            subnet_id = subnet_val.id
+            peering_id = peer_val.id
           }
         }
       ]
     ]) :
     pair.key => pair.value
   }
+
+  route_peering_combination = {
+    for pair in flatten([
+      for route_key, route_val in aws_route_table.main : [
+        for peer_key, peer_val in aws_vpc_peering_connection.main : {
+          key = "${route_key}-${peer_key}"
+          value = {
+            route_table_id = route_val.id
+            peering_id = peer_val.id
+          }
+        }
+      ]
+    ]) :
+    pair.key => pair.value
+  }
+
 }
 
-output "subnet_peering_combination" {
-  value = local.subnet_peering_combination
+output "route_peering_combination" {
+  value = local.route_peering_combination
 }
 
