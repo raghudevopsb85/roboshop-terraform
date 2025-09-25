@@ -17,6 +17,15 @@ resource "aws_subnet" "main" {
   }
 }
 
+resource "aws_route_table" "main" {
+  for_each = var.subnets
+  vpc_id   = aws_vpc.main.id
+
+  tags = {
+    Name = each.key
+  }
+}
+
 resource "aws_vpc_peering_connection" "main" {
   for_each    = var.vpc_peers
   peer_vpc_id = aws_vpc.main.id
@@ -26,7 +35,6 @@ resource "aws_vpc_peering_connection" "main" {
     Name = "${var.env}-to-${each.key}"
   }
 }
-
 
 resource "aws_route" "main-to-other" {
   for_each                  = var.vpc_peers
@@ -51,7 +59,7 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_eip" "ngw" {
-  domain   = "vpc"
+  domain = "vpc"
 }
 
 resource "aws_nat_gateway" "ngw" {

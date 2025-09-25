@@ -34,4 +34,6 @@ module "vpc" {
 # }
 
 
-
+output "main" {
+  value = module.vpc
+}
