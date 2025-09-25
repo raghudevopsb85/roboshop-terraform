@@ -54,7 +54,7 @@ resource "aws_eip" "ngw" {
   domain   = "vpc"
 }
 
-resource "aws_nat_gateway" "example" {
+resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.ngw.id
   subnet_id     = aws_subnet.main["gateway"].id
 
