@@ -123,14 +123,17 @@ vpc = {
       az1 = {
         cidr_block        = "10.10.10.0/24"
         availability_zone = "us-east-1a"
+        ngw               = true
       }
       az2 = {
         cidr_block        = "10.10.11.0/24"
         availability_zone = "us-east-1b"
+        ngw               = true
       }
       gateway = {
         cidr_block        = "10.10.0.0/24"
         availability_zone = "us-east-1a"
+        igw               = true
       }
     }
     vpc_peers = {

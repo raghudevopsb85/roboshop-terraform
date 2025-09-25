@@ -30,12 +30,14 @@ locals {
     pair.key => pair.value
   }
 
+  ngw_subnets = {
+    for name, subnet in var.subnets :
+    name => subnet
+    if try(subnet.ngw, false) == true
+  }
+
 }
 
-output "route_peering_combination" {
-  value = local.route_peering_combination
-}
-
-output "peering" {
-  value = aws_vpc_peering_connection.main
+output "ngw" {
+  value = ngw_subnets
 }
