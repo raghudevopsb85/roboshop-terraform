@@ -39,5 +39,5 @@ locals {
 }
 
 output "ngw" {
-  value = ngw_subnets
+  value = local.ngw_subnets
 }
