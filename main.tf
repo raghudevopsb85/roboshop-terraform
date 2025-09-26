@@ -18,8 +18,8 @@ module "ec2" {
   name          = each.key
   zone_id       = var.zone_id
   token         = var.token
-  subnet        = lookup(lookup(lookup(lookup(module.vpc.subnets, "main", null), "subnets", null), each.value["subnet_ref"], null), "id", null)
-  vpc_id        = lookup(lookup(module.vpc.subnets, "main", null), "vpc_id", null)
+  subnet        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_ref"], null), "id", null)
+  vpc_id        = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   bastion_nodes = var.bastion_nodes
 }
 
