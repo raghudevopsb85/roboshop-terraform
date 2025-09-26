@@ -46,18 +46,22 @@ databases = {
   mysql = {
     instance_type = "t3.small"
     disk_size     = 20
+    subnet_ref    = "db-az1"
   }
   mongodb = {
     instance_type = "t3.small"
     disk_size     = 20
+    subnet_ref    = "db-az1"
   }
   redis = {
     instance_type = "t3.small"
     disk_size     = 20
+    subnet_ref    = "db-az2"
   }
   rabbitmq = {
     instance_type = "t3.small"
     disk_size     = 20
+    subnet_ref    = "db-az2"
   }
 }
 

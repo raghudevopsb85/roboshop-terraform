@@ -18,6 +18,7 @@ module "vpc" {
 #   name          = each.key
 #   zone_id       = var.zone_id
 #   token         = var.token
+#   subnet        = lookup(module.vpc.subnets, each.value["subnet_ref"], null )
 # }
 
 
