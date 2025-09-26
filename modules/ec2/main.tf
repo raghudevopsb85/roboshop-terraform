@@ -27,7 +27,7 @@ resource "aws_instance" "instance" {
   count                  = var.spot ? 0 : 1
   ami                    = var.ami
   instance_type          = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
   iam_instance_profile   = aws_iam_instance_profile.main.name
   subnet_id              = var.subnet
 
