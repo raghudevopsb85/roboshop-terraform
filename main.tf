@@ -8,18 +8,20 @@ module "vpc" {
   vpc_peers      = each.value["vpc_peers"]
 }
 
-# module "ec2" {
-#   for_each      = var.databases
-#   source        = "./modules/ec2"
-#   ami           = var.ami
-#   env           = var.env
-#   instance_type = each.value["instance_type"]
-#   disk_size     = each.value["disk_size"]
-#   name          = each.key
-#   zone_id       = var.zone_id
-#   token         = var.token
-#   subnet        = lookup(module.vpc.subnets, each.value["subnet_ref"], null )
-# }
+module "ec2" {
+  for_each      = var.databases
+  source        = "./modules/ec2"
+  ami           = var.ami
+  env           = var.env
+  instance_type = each.value["instance_type"]
+  disk_size     = each.value["disk_size"]
+  name          = each.key
+  zone_id       = var.zone_id
+  token         = var.token
+  subnet        = lookup(lookup(lookup(lookup(module.vpc.subnets, "main", null), "subnets", null), each.value["subnet_ref"], null), "id", null)
+  vpc_id        = lookup(lookup(module.vpc.subnets, "main", null), "vpc_id", null)
+  bastion_nodes = var.bastion_nodes
+}
 
 
 # module "eks" {
