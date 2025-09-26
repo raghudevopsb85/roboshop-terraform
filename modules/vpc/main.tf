@@ -26,6 +26,12 @@ resource "aws_route_table" "main" {
   }
 }
 
+resource "aws_route_table_association" "subnet-assoc" {
+  for_each       = var.subnets
+  subnet_id      = lookup(lookup(aws_subnet.main, each.key, null ), "id", null)
+  route_table_id = lookup(lookup(aws_route_table.main, each.key, null ), "id", null)
+}
+
 resource "aws_vpc_peering_connection" "main" {
   for_each    = var.vpc_peers
   peer_vpc_id = aws_vpc.main.id
