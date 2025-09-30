@@ -86,7 +86,8 @@ resource "aws_nat_gateway" "ngw" {
 }
 
 resource "aws_route" "gateway" {
-  route_table_id         = lookup(lookup(aws_route_table.main, "gateway", null), "id", null)
+  for_each               = local.igw_subnets
+  route_table_id         = lookup(lookup(aws_route_table.main, each.key, null), "id", null)
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
 }
