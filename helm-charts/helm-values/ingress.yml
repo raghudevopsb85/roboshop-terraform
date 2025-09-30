@@ -3,9 +3,11 @@ controller:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
       service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-098648d5abe9a4696, subnet-0981d0a18bce0f8fc
+      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-081b54f1ba0f84779,subnet-010d7d0bd8652b0ff
+      service.beta.kubernetes.io/aws-load-balancer-internal: "true"
   metrics:
     enabled: true
   podAnnotations:
     prometheus.io/port: "10254"
     prometheus.io/scrape: "true"
+
