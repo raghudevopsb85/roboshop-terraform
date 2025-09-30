@@ -3,6 +3,7 @@ controller:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
       service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-098648d5abe9a4696, subnet-0981d0a18bce0f8fc
   metrics:
     enabled: true
   podAnnotations:
