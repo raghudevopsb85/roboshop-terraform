@@ -20,13 +20,13 @@ resource "helm_release" "nginx_ingress" {
   chart            = "ingress-nginx"
   namespace        = "tools"
   create_namespace = true
-  values           = [file("${path.module}/helm-values/ingress.yml")]
+  values           = [templatefile("${path.module}/helm-values/ingress.yml",
+    {
+      lb_subnets = join(",", data.aws_subnets.lb-az.ids)
+    }
+  )]
 
-  set {
-    name  = "controller.service.annotations.service.beta.kubernetes.io/aws-load-balancer-subnets"
-    value = join(",", data.aws_subnets.lb-az.ids)
-    type  = "string"
-  }
+  #values           = [file("${path.module}/helm-values/ingress.yml")]
 
 }
 
