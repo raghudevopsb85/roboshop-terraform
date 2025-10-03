@@ -9,5 +9,17 @@ data "aws_subnets" "lb-az" {
   }
 }
 
+data "aws_vpc" "main" {
+  filter {
+    name   = "tag:Name"
+    values = [var.env]
+  }
+}
 
+data "aws_subnets" "public-subnets" {
+  filter {
+    name   = "tag:Name"
+    values = ["public-az1", "public-az2"]
+  }
+}
 
