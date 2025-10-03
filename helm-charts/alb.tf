@@ -52,9 +52,9 @@ resource "aws_lb_target_group" "tg" {
 }
 
 resource "aws_lb_target_group_attachment" "tg-attach" {
-  count            = length(var.internal_lb_ips)
+  count            = length(local.internal_lb_ips)
   target_group_arn = aws_lb_target_group.tg.arn
-  target_id        = var.internal_lb_ips[count.index]
+  target_id        = local.internal_lb_ips[count.index]
   port             = 80
 }
 
