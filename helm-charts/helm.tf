@@ -22,6 +22,11 @@ resource "helm_release" "nginx_ingress" {
   create_namespace = true
   values           = [file("${path.module}/helm-values/ingress.yml")]
 
+  set {
+    name  = "controller.service.annotations.service.beta.kubernetes.io/aws-load-balancer-subnets"
+    value = join(",", data.aws_subnets.lb-az.ids)
+  }
+
 }
 
 resource "helm_release" "external-dns" {
