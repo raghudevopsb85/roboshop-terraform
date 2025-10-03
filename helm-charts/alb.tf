@@ -53,7 +53,7 @@ resource "aws_lb_target_group" "tg" {
 
 resource "aws_lb_target_group_attachment" "tg-attach" {
   target_group_arn = aws_lb_target_group.tg.arn
-  target_id        = "10.10.1.1"
+  target_id        = "10.10.14.10"
   port             = 80
 }
 
