@@ -25,6 +25,7 @@ resource "helm_release" "nginx_ingress" {
   set {
     name  = "controller.service.annotations.service.beta.kubernetes.io/aws-load-balancer-subnets"
     value = join(",", data.aws_subnets.lb-az.ids)
+    type  = "string"
   }
 
 }
