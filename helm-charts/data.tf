@@ -23,3 +23,13 @@ data "aws_subnets" "public-subnets" {
   }
 }
 
+data "aws_lb" "ingress" {
+  tags = {
+    "kubernetes.io/service-name" = "tools/ingress-nginx-controller"
+  }
+}
+
+output "nlb" {
+  value = data.aws_lb.ingress
+}
+
