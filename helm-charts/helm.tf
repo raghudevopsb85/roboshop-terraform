@@ -31,14 +31,15 @@ resource "helm_release" "nginx_ingress" {
 
 }
 
-resource "helm_release" "external-dns" {
-  depends_on       = [null_resource.kubeconfig]
-  name             = "external-dns"
-  repository       = "https://kubernetes-sigs.github.io/external-dns"
-  chart            = "external-dns"
-  namespace        = "tools"
-  create_namespace = true
-}
+# Commented as we moved to ALB, Hence we are going to create DNS records to public load balancer.
+# resource "helm_release" "external-dns" {
+#   depends_on       = [null_resource.kubeconfig]
+#   name             = "external-dns"
+#   repository       = "https://kubernetes-sigs.github.io/external-dns"
+#   chart            = "external-dns"
+#   namespace        = "tools"
+#   create_namespace = true
+# }
 
 resource "helm_release" "argocd" {
   depends_on       = [null_resource.kubeconfig, helm_release.nginx_ingress]
