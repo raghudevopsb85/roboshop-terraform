@@ -37,6 +37,6 @@ data "aws_network_interface" "nlb_ips" {
 
 
 output "nlb" {
-  value = data.aws_network_interface.nlb_ips
+  value = data.aws_network_interface.nlb_ips[*].private_ip
 }
 
