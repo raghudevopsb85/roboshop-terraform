@@ -86,4 +86,13 @@ resource "aws_lb_listener" "http" {
   }
 }
 
+resource "aws_route53_record" "records" {
+  count   = length(var.alb_dns_records)
+  zone_id = var.zone_id
+  name    = "${var.alb_dns_records[count.index]}-${var.env}"
+  type    = "CNAME"
+  ttl     = 30
+  records = [aws_lb.main.dns_name]
+}
+
 
