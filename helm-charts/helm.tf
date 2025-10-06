@@ -28,7 +28,6 @@ resource "helm_release" "nginx_ingress" {
   )]
 
   #values           = [file("${path.module}/helm-values/ingress.yml")]
-
 }
 
 # Commented as we moved to ALB, Hence we are going to create DNS records to public load balancer.
