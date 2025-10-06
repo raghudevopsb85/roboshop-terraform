@@ -55,7 +55,7 @@ resource "aws_lb_target_group_attachment" "tg-attach" {
   depends_on       = [helm_release.nginx_ingress]
   count            = length(data.aws_network_interface.nlb_ips[*].private_ip)
   target_group_arn = aws_lb_target_group.tg.arn
-  target_id        = data.aws_network_interface.nlb_ips[*].private_ip[count.index]
+  target_id        = data.aws_network_interface.nlb_ips[count.index].private_ip
   port             = 80
 }
 
