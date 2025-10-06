@@ -49,6 +49,9 @@ resource "aws_lb_target_group" "tg" {
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.main.id
   target_type = "ip"
+  health_check {
+    matcher = "404"
+  }
 }
 
 resource "aws_lb_target_group_attachment" "tg-attach" {
