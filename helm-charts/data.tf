@@ -23,13 +23,16 @@ data "aws_subnets" "public-subnets" {
   }
 }
 
-data "aws_lb" "ingress" {
-  tags = {
-    "kubernetes.io/service-name" = "tools/ingress-nginx-controller"
+data "aws_network_interfaces" "nlb_interfaces" {
+  filter {
+    name = "interface-type"
+    values = ["network_load_balancer"]
   }
+
 }
 
+
 output "nlb" {
-  value = data.aws_lb.ingress
+  value = data.aws_network_interfaces.nlb_interfaces
 }
 
