@@ -37,6 +37,7 @@ module "eks" {
   access      = each.value["access"]
   addons      = each.value["addons"]
   vault_token = var.token
+  kms_arn_id  = var.kms_arn_id
 }
 
 
