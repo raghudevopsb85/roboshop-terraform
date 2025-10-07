@@ -23,6 +23,7 @@ module "ec2" {
   bastion_nodes = var.bastion_nodes
   app_cidrs     = each.value["app_cidrs"]
   app_port      = each.value["app_port"]
+  kms_arn_id    = var.kms_arn_id
 }
 
 

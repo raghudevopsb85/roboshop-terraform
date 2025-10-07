@@ -25,7 +25,7 @@ data "aws_subnets" "public-subnets" {
 
 data "aws_network_interfaces" "nlb_interfaces" {
   filter {
-    name = "interface-type"
+    name   = "interface-type"
     values = ["network_load_balancer"]
   }
 }
