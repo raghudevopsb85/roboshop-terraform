@@ -43,13 +43,13 @@
 
 
 databases = {
-  mysql = {
-    instance_type = "t3.small"
-    disk_size     = 20
-    subnet_ref    = "db-az1"
-    app_port      = 3306
-    app_cidrs     = ["10.10.10.0/24", "10.10.11.0/24"]
-  }
+#   mysql = {
+#     instance_type = "t3.small"
+#     disk_size     = 20
+#     subnet_ref    = "db-az1"
+#     app_port      = 3306
+#     app_cidrs     = ["10.10.10.0/24", "10.10.11.0/24"]
+#   }
   mongodb = {
     instance_type = "t3.small"
     disk_size     = 20
